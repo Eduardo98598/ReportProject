@@ -7,7 +7,7 @@ password: admin123
 Funciones Js en el archivo php/report1.php linea 217
 
 
- <p align="center"> <img src="https://github.com/Eduardo98598/ReportProject/tree/master/pruebas/code.png" width="800"/> <img src="https://github.com/Eduardo98598/ReportProject/tree/master/pruebas/index.png" width="800"/> </p> 
+ <p align="center"> <img src="https://raw.githubusercontent.com/Eduardo98598/ReportProject/tree/master/pruebas/code.png" width="800"/> <img src="https://raw.githubusercontent.com/ReportProject/tree/master/pruebas/index.png" width="800"/> </p> 
 
 
 
