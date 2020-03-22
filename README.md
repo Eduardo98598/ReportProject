@@ -3,7 +3,8 @@ Proyecto Unidad II Lenguaje Lógico y funcional. Equipo PapusViolentos
 Modulo de la gráfica de los pacientes que tienen alguna enfermedad(Datos cambian al ingresar un valor)
 user root: root@admin.com
 password: admin123
-
+web: https://reportmobil.000webhostapp.com/php/login.php
+Reportes-> Reporte de enfermedades
 Funciones Js en el archivo php/report1.php linea 217
 
 
