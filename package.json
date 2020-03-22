@@ -1,0 +1,17 @@
+{
+  "name": "report",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bundle.js",
+  "dependencies": {
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "browserify": "^16.5.0"
+  },
+  "scripts": {
+   "build":"browserify pastel.js -o bundle.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
