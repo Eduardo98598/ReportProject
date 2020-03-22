@@ -6,11 +6,11 @@ password: admin123
 
 Funciones Js en el archivo php/report1.php linea 217
 
-![Foto1](https://github.com/Eduardo98598/ReportProject/tree/master/pruebas/code.png)
+
+ <p align="center"> <img src="https://github.com/Eduardo98598/ReportProject/tree/master/pruebas/code.png" width="800"/> <img src="https://github.com/Eduardo98598/ReportProject/tree/master/pruebas/index.png" width="800"/> </p> 
 
 
-Grafica 
 
 
-![Foto2](https://github.com/Eduardo98598/ReportProject/tree/master/pruebas/index.png)
+
 
