@@ -6,11 +6,11 @@ password: admin123
 
 Funciones Js en el archivo php/report1.php linea 217
 
-![Foto1](https://github.com/Eduardo98598/ReportProject/tree/master/prueba/code.png)
+![Foto1](https://github.com/Eduardo98598/ReportProject/tree/master/pruebas/code.png)
 
 
 Grafica 
 
 
-![Foto2](https://github.com/Eduardo98598/ReportProject/tree/master/prueba/index.png)
+![Foto2](https://github.com/Eduardo98598/ReportProject/tree/master/pruebas/index.png)
 
