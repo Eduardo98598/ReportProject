@@ -1,3 +1,15 @@
+
+<?php 
+
+require_once('usuario.php');
+	require_once('crud_usuario.php');
+  require_once('conexion.php');
+  
+	session_start();
+	if (!isset($_SESSION['email'])) {
+		header('Location: index.php');
+	}
+?>
 <html>
 <head>
 <meta charset="utf-8">
@@ -22,17 +34,7 @@
 
  <link href="../css/style.css" rel="stylesheet">
 <link href="../css/stylelog.css" rel="stylesheet">
-<?php 
 
-require_once('usuario.php');
-	require_once('crud_usuario.php');
-  require_once('conexion.php');
-  
-	session_start();
-	if (!isset($_SESSION['email'])) {
-		header('Location: index.php');
-	}
-?>
 
 </head>
 
@@ -57,7 +59,7 @@ require_once('usuario.php');
       <div class="row align-items-center">
 
         <div class="col-6 col-lg-2">
-          <h1 class="mb-0 site-logo"><a href="index.html" class="mb-0">Report</a></h1>
+          <h1 class="mb-0 site-logo"><a href="root.php" class="mb-0">Report</a></h1>
         </div>
 
         <div class="col-12 col-md-10 d-none d-lg-block">
@@ -72,7 +74,7 @@ require_once('usuario.php');
                 <a href="#" class="nav-link">Reportes</a>
                 <ul class="dropdown">
                   <li><a href="report1.php" class="nav-link">Reporte de enfermedades</a></li>
-                  <li><a href="#" class="nav-link">Reporte de usuarios</a></li>
+                  <li><a href="report2.php" class="nav-link">Reporte de usuarios</a></li>
                 </ul>
               </li>
               
@@ -111,7 +113,7 @@ require_once('usuario.php');
           <div class="row">
             <div class="wrapper fadeInDown">
             <div class="w3-container w3-black w3-center">
-		<h1>BIENVENIDO ADMINISTRADOR</h1> <?php echo $_SESSION;?>
+		<h1>BIENVENIDO ADMINISTRADOR</h1> <?php $_SESSION;?>
 
 	</div>
 	<p></p>

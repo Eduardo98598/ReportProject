@@ -45,7 +45,7 @@
       <div class="row align-items-center">
 
         <div class="col-6 col-lg-2">
-          <h1 class="mb-0 site-logo"><a href="index.html" class="mb-0">Report</a></h1>
+          <h1 class="mb-0 site-logo"><a href="../index.html" class="mb-0">Report</a></h1>
         </div>
 
         <div class="col-12 col-md-10 d-none d-lg-block">
@@ -112,10 +112,26 @@
                   <input type="text" id="lastname" class="fadeIn second" name="lastname" placeholder="Apellido">
                   <input type="text" id="email" class="fadeIn third" name="email" placeholder="Correo">
                     <input type="text" id="pass" class="fadeIn fourth" name="pass" placeholder="Contraseña">
-                  <input type="text" id="country" class="fadeIn five" name="country" placeholder="País">
-                  <input type="text" id="city" class="fadeIn six" name="city" placeholder="Ciudad">
-                  <label for="datos" class="fadeIn seven">¿Padece de?</label>
-                  <select id="datos" name="datos" class="fadeIn eight">
+                    <br>
+                    <label for="country" class="fadeIn five">País</label>
+                  <br>
+                    <select id="country" name="country" class="fadeIn six">
+                    <option value="1">México</option>
+                    <option value="2">Estados Unidos</option>
+                    <option value="3">Cánada</option>
+                    <option value="4">Colombia</option>
+                    <option value="5">Perú</option>
+                    <option value="6">Brasil</option>
+                    <option value="7">Argentina</option>
+                  </select>
+                  <!--Se realiza un cambio de DATABASE cambiando el pais por numeros y reconocidos en JS
+                 <input type="text" id="country" class="fadeIn five" name="country" placeholder="País">-->
+
+
+
+                  <input type="text" id="city" class="fadeIn seven" name="city" placeholder="Ciudad">
+                  <label for="datos" class="fadeIn eight">¿Padece de?</label>
+                  <select id="datos" name="datos" class="fadeIn nine">
                     <option value="1">Ninguno</option>
                     <option value="2">Enfermedad respiratoria</option>
                     <option value="3">Enfermedad de corazon</option>

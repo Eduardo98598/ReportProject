@@ -127,11 +127,11 @@ require_once('usuario.php');
  <!--Abre etiquetas para ser llamado con JS-->
 <canvas id="canvas2"></canvas>
 	<div id="leyenda2" class="leyenda leyendaH"></div>
-
+	<div id="risk" class="p-3 mb-2 bg-danger text-white"></div>
  <!--codigo php para mostrar la cantidad de datos que existen por enfermedad -->
 <?php
 echo "<table style='border: solid 1px black;'>";
- echo "<tr><th>Enfermedades</th><th>Conteo</th></tr>";
+ echo "<tr><th>Pais</th><th>Conteo</th></tr>";
 
 class TableRows extends RecursiveIteratorIterator {
     function __construct($it) {
@@ -160,19 +160,19 @@ try {
     //$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn=Db::conectar();
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $conn->prepare("SELECT datos, COUNT(*) FROM users WHERE datos = 1 GROUP BY datos");
+    $stmt = $conn->prepare("SELECT pais, COUNT(*) FROM users WHERE pais = 1 GROUP BY pais");
     $stmt->execute();
-    $stmt1 = $conn->prepare("SELECT datos, COUNT(*) FROM users WHERE datos = 2 GROUP BY datos");
+    $stmt1 = $conn->prepare("SELECT pais, COUNT(*) FROM users WHERE pais = 2 GROUP BY pais");
     $stmt1->execute();
-	$stmt2 = $conn->prepare("SELECT datos, COUNT(*) FROM users WHERE datos = 3 GROUP BY datos");
+	$stmt2 = $conn->prepare("SELECT pais, COUNT(*) FROM users WHERE pais = 3 GROUP BY pais");
 	$stmt2->execute();
-	$stmt3 = $conn->prepare("SELECT datos, COUNT(*) FROM users WHERE datos = 4 GROUP BY datos");
+	$stmt3 = $conn->prepare("SELECT pais, COUNT(*) FROM users WHERE pais = 4 GROUP BY pais");
 	$stmt3->execute();
-	$stmt4 = $conn->prepare("SELECT datos, COUNT(*) FROM users WHERE datos = 5 GROUP BY datos");
+	$stmt4 = $conn->prepare("SELECT pais, COUNT(*) FROM users WHERE pais = 5 GROUP BY pais");
 	$stmt4->execute();
-	$stmt5= $conn->prepare("SELECT datos, COUNT(*) FROM users WHERE datos = 6 GROUP BY datos");
+	$stmt5= $conn->prepare("SELECT pais, COUNT(*) FROM users WHERE pais = 6 GROUP BY pais");
 	$stmt5->execute();
-	$stmt6= $conn->prepare("SELECT datos, COUNT(*) FROM users WHERE datos = 7 GROUP BY datos");
+	$stmt6= $conn->prepare("SELECT pais, COUNT(*) FROM users WHERE pais = 7 GROUP BY pais");
     $stmt6->execute();
     // set the resulting array to associative
     $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -214,20 +214,40 @@ echo "</table>";
 ?>
 
 
+
+
+<h2>
+</h2>
 <script>
-	//variables declaradas para dolvorver en las funciones
+	//variables declaradas para dolvorver en las funciones --de paises
 	//estas representan el porcentaje en relacion a los usuarios registrados
-var e1,e2,e3,e4,e5,e6,e7;
+var p1,p2,p3,p4,p5,p6,p7;
+
+//variable global de riesgo de pais con mayor enfermedades
+var globalRisk=<?php 
+$db=Db::conectar();
+//selecciona pais contanto los pais de la tabla agrupando con pais teniendo contando datos si es  mayor al maximo de paises
+$select=$db->prepare('SELECT pais, COUNT(pais) FROM users GROUP BY pais HAVING COUNT(datos)>=MAX(pais)');
+//$select1=$db->prepare('SELECT pais, COUNT(pais) from users WHERE pais!=0');
+$select->execute();
+//$select1->execute();
+$registro=$select->fetch();
+
+//$results = print_r($registro, true);  
+  
+echo $registro[0]; 
+
+?>;
 
 
-//funcion que devuelve el porcentaje que padece de  ninguna enfermedad
-function enf1()
+//funcion que devuelve el porcentaje que son de mexico
+function MEX()
 {
 	//almacena el porcentaje con codigo php y sql
-e1=<?php 
+	p1=<?php 
 $db=Db::conectar();
-$select=$db->prepare('SELECT datos, COUNT(*) FROM users WHERE datos = 1');
-$select1=$db->prepare('SELECT datos, COUNT(datos) from users WHERE datos!=0');
+$select=$db->prepare('SELECT pais, COUNT(*) FROM users WHERE pais = 1');
+$select1=$db->prepare('SELECT pais, COUNT(pais) from users WHERE pais!=0');
 $select->execute();
 $select1->execute();
 $registro=$select->fetch();
@@ -237,36 +257,16 @@ $y=$registro1[1];
 echo ($x*100)/$y;
 ?>;
 //retorna el valor para depues ser usada en el diagrama
-return e1;
+return p1;
 }
-//funcion que devuelve el porcentaje que padece de enfermedad respiratoria
-function enf2()
+//funcion que devuelve el porcentaje que son de USA
+function USA()
 {
 	//almacena el porcentaje con codigo php y sql
-e2=<?php 
-$db2=Db::conectar();
-$select2=$db2->prepare('SELECT datos, COUNT(*) FROM users WHERE datos = 2');
-$select3=$db2->prepare('SELECT datos, COUNT(datos) from users WHERE datos!=0');
-$select2->execute();
-$select3->execute();
-$registro2=$select2->fetch();
-$registro3=$select3->fetch();
-$x1=$registro2[1];
-$y1=$registro3[1];
-echo ($x1*100)/$y1;
-?>;
-//retorna el valor para depues ser usada en el diagrama
-return e2;
-
-}
-//funcion que devuelve el porcentaje que padece de enfermedad de corazon
-const  enf3 = () =>
-{
-	//almacena el porcentaje con codigo php y sql
-	e3 = <?php 
+p2=<?php 
 $db=Db::conectar();
-$select=$db->prepare('SELECT datos, COUNT(*) FROM users WHERE datos = 3');
-$select1=$db->prepare('SELECT datos, COUNT(datos) from users WHERE datos!=0');
+$select=$db->prepare('SELECT pais, COUNT(*) FROM users WHERE pais = 2');
+$select1=$db->prepare('SELECT pais, COUNT(pais) from users WHERE pais!=0');
 $select->execute();
 $select1->execute();
 $registro=$select->fetch();
@@ -276,16 +276,36 @@ $y=$registro1[1];
 echo ($x*100)/$y;
 ?>;
 //retorna el valor para depues ser usada en el diagrama
-		return e3 ;
+return p2;
+
 }
-//funcion que devuelve el porcentaje que padece de enfermedad de Sindrome
-const  enf4 = () =>
+//funcion que devuelve el porcentaje que son de CANADA
+const  CAN = () =>
+{
+	//almacena el porcentaje con codigo php y sql
+p3=<?php 
+$db=Db::conectar();
+$select=$db->prepare('SELECT pais, COUNT(*) FROM users WHERE pais = 3');
+$select1=$db->prepare('SELECT pais, COUNT(pais) from users WHERE pais!=0');
+$select->execute();
+$select1->execute();
+$registro=$select->fetch();
+$registro1=$select1->fetch();
+$x=$registro[1];
+$y=$registro1[1];
+echo ($x*100)/$y;
+?>;
+//retorna el valor para depues ser usada en el diagrama
+return p3;
+}
+//funcion que devuelve el porcentaje que son de COLOMBIA
+const  COL = () =>
 {
 //almacena el porcentaje con codigo php y sql
-e4 =<?php 
+p4=<?php 
 $db=Db::conectar();
-$select=$db->prepare('SELECT datos, COUNT(*) FROM users WHERE datos = 4');
-$select1=$db->prepare('SELECT datos, COUNT(datos) from users WHERE datos!=0');
+$select=$db->prepare('SELECT pais, COUNT(*) FROM users WHERE pais = 4');
+$select1=$db->prepare('SELECT pais, COUNT(pais) from users WHERE pais!=0');
 $select->execute();
 $select1->execute();
 $registro=$select->fetch();
@@ -295,17 +315,16 @@ $y=$registro1[1];
 echo ($x*100)/$y;
 ?>;
 //retorna el valor para depues ser usada en el diagrama
-
-return e4;
+return p4;
 }
-//funcion que devuelve el porcentaje que padece de enfermedad de VIH
-const  enf5 = () =>
+//funcion que devuelve el porcentaje que son de PERU
+const  PER = () =>
 {
 	//almacena el porcentaje con codigo php y sql
-e5=<?php 
+p5=<?php 
 $db=Db::conectar();
-$select=$db->prepare('SELECT datos, COUNT(*) FROM users WHERE datos = 5');
-$select1=$db->prepare('SELECT datos, COUNT(datos) from users WHERE datos!=0');
+$select=$db->prepare('SELECT pais, COUNT(*) FROM users WHERE pais = 5');
+$select1=$db->prepare('SELECT pais, COUNT(pais) from users WHERE pais!=0');
 $select->execute();
 $select1->execute();
 $registro=$select->fetch();
@@ -315,18 +334,18 @@ $y=$registro1[1];
 echo ($x*100)/$y;
 ?>;
 //retorna el valor para depues ser usada en el diagrama
-return e5;
+return p5;
 
 }
 
-//funcion que devuelve el porcentaje que padece de enfermedad de Hepatitis
-const  enf6 = () =>
+//funcion que devuelve el porcentaje que son de BRASIL
+const  BRA = () =>
 {
 //almacena el porcentaje con codigo php y sql
-e6=<?php 
+p6=<?php 
 $db=Db::conectar();
-$select=$db->prepare('SELECT datos, COUNT(*) FROM users WHERE datos = 6');
-$select1=$db->prepare('SELECT datos, COUNT(datos) from users WHERE datos!=0');
+$select=$db->prepare('SELECT pais, COUNT(*) FROM users WHERE pais = 6');
+$select1=$db->prepare('SELECT pais, COUNT(pais) from users WHERE pais!=0');
 $select->execute();
 $select1->execute();
 $registro=$select->fetch();
@@ -336,18 +355,18 @@ $y=$registro1[1];
 echo ($x*100)/$y;
 ?>;
 //retorna el valor para depues ser usada en el diagrama
-return e6;
+return p6;
 
 
 }
-//funcion que devuelve el porcentaje que padece de enfermedad de Diabetes
-const  enf7 = () =>
+//funcion que devuelve el porcentaje que son de  ARGENTINA
+const  ARG = () =>
 {
 //almacena el porcentaje con codigo php y sql
-e7=<?php 
+p7=<?php 
 $db=Db::conectar();
-$select=$db->prepare('SELECT datos, COUNT(*) FROM users WHERE datos = 7');
-$select1=$db->prepare('SELECT datos, COUNT(datos) from users WHERE datos!=0');
+$select=$db->prepare('SELECT pais, COUNT(*) FROM users WHERE pais = 7');
+$select1=$db->prepare('SELECT pais, COUNT(pais) from users WHERE pais!=0');
 $select->execute();
 $select1->execute();
 $registro=$select->fetch();
@@ -356,11 +375,78 @@ $x=$registro[1];
 $y=$registro1[1];
 echo ($x*100)/$y;
 ?>;
-
 //retorna el valor para depues ser usada en el diagrama
-return e7;
+return p7;
 }
 
+
+
+//funcion que devuelve cual es el pais con mayor riesgo en enfermedades
+const  risks= (consulta) =>
+{
+switch(consulta)
+{
+case 1:	
+	
+	console.log("El País con mayor riesgo de enfermedades es Mexico");
+	//funcion onload para cargar el script solo si existe el id
+window.onload = function what(){
+	document.getElementById("risk").innerHTML="El País con mayor riesgo de enfermedades es Mexico";
+
+};
+break;
+case 2:	
+	console.log("El País con mayor riesgo de enfermedades es USA");
+window.onload = function what(){
+	document.getElementById("risk").innerHTML="El País con mayor riesgo de enfermedades es USA";
+	
+};
+
+break;
+case 3:	
+	console.log("El País con mayor riesgo de enfermedades es CANADA");
+	window.onload = function what(){
+		document.getElementById("risk").innerHTML="El País con mayor riesgo de enfermedades es CANADA";
+
+};
+
+
+break;
+case 4:	
+console.log("El País con mayor riesgo de enfermedades es COLOMBIA");
+window.onload = function what(){
+		document.getElementById("risk").innerHTML="El País con mayor riesgo de enfermedades es COLOMBIA";
+
+};
+break;
+case 5:	
+	console.log("El País con mayor riesgo de enfermedades es PERU");
+	window.onload = function what(){
+		document.getElementById("risk").innerHTML="El País con mayor riesgo de enfermedades es PERU";
+
+};
+
+break;
+case 6:	
+
+
+console.log("El País con mayor riesgo de enfermedades es BRASIL");
+window.onload = function what(){
+		document.getElementById("risk").innerHTML="El País con mayor riesgo de enfermedades es BRASIL";
+
+};
+break;
+case 7:	
+console.log("El País con mayor riesgo de enfermedades es ARGENTINA");
+window.onload = function what(){
+		document.getElementById("risk").innerHTML="El País con mayor riesgo de enfermedades es ARGENTINA";
+
+};
+break;
+default:
+console.log("Ocurrio un error");
+}
+}
 
 
 //funcion principal donde dibuja el diagrama
@@ -491,14 +577,13 @@ var miPastel=function(canvasId,width,height,valores) {
 // definimos los valores de nuestra gráfica
 //llamando las funciones creadas anteriormente
 var valores={
-	"Ninguna":{valor:enf1(),color:"blue"},
-
-	"Respiratoria":{valor:enf2(),color:"Yellow"},
-	"Corazon":{valor:enf3(),color:"red"},
-	"Sindrome":{valor:enf4(),color:"green"},
-	"VIH":{valor:enf5(),color:"Orange"},
-	"Hepatitis":{valor:enf6(),color:"Cyan"},
-  "Diabetes":{valor:enf7(),color:"Pink"}
+	"MEX":{valor:MEX(),color:"blue"},
+	"USA":{valor:USA(),color:"Yellow"},
+	"CAN":{valor:CAN(),color:"red"},
+	"COL":{valor:COL(),color:"green"},
+	"PER":{valor:PER(),color:"Orange"},
+	"BRA":{valor:BRA(),color:"Cyan"},
+  "ARG":{valor:ARG(),color:"Pink"}
   
 }
  
@@ -522,6 +607,8 @@ pastel.ponerLeyenda("leyenda2");
 
 
 main();
+
+risks(globalRisk);
 
 
 </script>
