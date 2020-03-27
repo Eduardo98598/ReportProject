@@ -224,10 +224,12 @@ echo "</table>";
 var p1,p2,p3,p4,p5,p6,p7;
 
 //variable global de riesgo de pais con mayor enfermedades
+
+
 var globalRisk=<?php 
 $db=Db::conectar();
 //selecciona pais contanto los pais de la tabla agrupando con pais teniendo contando datos si es  mayor al maximo de paises
-$select=$db->prepare('SELECT pais, COUNT(pais) FROM users GROUP BY pais HAVING COUNT(datos)>=MAX(pais)');
+$select=$db->prepare('SELECT pais, COUNT(pais) FROM users GROUP BY pais HAVING COUNT(datos)>=(SELECT MAX(contador) FROM ( SELECT pais, COUNT(pais) contador FROM users GROUP BY pais)T)');
 //$select1=$db->prepare('SELECT pais, COUNT(pais) from users WHERE pais!=0');
 $select->execute();
 //$select1->execute();
