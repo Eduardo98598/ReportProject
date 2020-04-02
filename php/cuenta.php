@@ -13,28 +13,38 @@
   echo "<br />\n"; 
   print_r(session_get_cookie_params()); 
     */
-	
+    session_start();
+    if (!isset($_SESSION['email'])) {
+      header('Location: ../index.html');
+    }
+    else
+    {
 
+      $almacen=print_r($_SESSION,true);
+
+      //echo $almacen;
+      $pattern = '/[a-z\d._%+-]+@[a-z\d.-]+\.[a-z]{2,4}\b/i';
+  $subject = $almacen;
+  preg_match ( $pattern, $subject, $matches );
+  $dato=$matches[0];
+
+    }
+	
+/*
     //Inicializar la sesión
     session_start();
     if (isset($_SESSION['email'])) {
         //asignar a variable
 	
-		$almacen=print_r($_SESSION,true);
-
-		//echo $almacen;
-		$pattern = '/[a-z\d._%+-]+@[a-z\d.-]+\.[a-z]{2,4}\b/i';
-$subject = $almacen;
-preg_match ( $pattern, $subject, $matches );
-$dato=$matches[0];
-
+	
+//todo codigo
 
 
         //asegurar que no tenga "", <, > o &
 	} else {
         //No existe username en la sesión
         header('Location: http://url-de-tu-web.com/login.php');
-    }
+    }  */
 	 
 ?>
 

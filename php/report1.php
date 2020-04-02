@@ -4,10 +4,10 @@ require_once('usuario.php');
 	require_once('crud_usuario.php');
   require_once('conexion.php');
   
-	session_start();
-	if (!isset($_SESSION['email'])) {
-		header('Location: index.php');
-	}
+  session_start();
+  if (!isset($_SESSION['email'])) {
+	  header('Location: ../index.html');
+  }
 ?>
 <html>
 <head>
@@ -75,7 +75,7 @@ require_once('usuario.php');
             <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
               <li class="active"><a href="root.php" class="nav-link">Inicio</a></li>
               <li><a href="#" class="nav-link">Agregar</a></li>
-              <li><a href="#" class="nav-link">Membresias</a></li>
+              <li><a href="plan.php" class="nav-link">Membresias</a></li>
 
               <li class="has-children">
                 <a href="#" class="nav-link">Reportes</a>

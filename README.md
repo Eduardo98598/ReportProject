@@ -17,6 +17,16 @@ Agregando funciones del porcentaje de Paises, funcion para calcular el pais con 
 <p align="center"> <img src="https://raw.githubusercontent.com/Eduardo98598/ReportProject/master/pruebas/code2.png" width="800"/> <img src="https://raw.githubusercontent.com/Eduardo98598/ReportProject/master/pruebas/code3.png" width="800"/>
  <img src="https://raw.githubusercontent.com/Eduardo98598/ReportProject/master/pruebas/test2.png" width="800"/></p> 
 
+Evaluacion final JS en el archivo php/plan.php linea 321
+pagina Membresias
+<p align="center"> <img src="https://raw.githubusercontent.com/Eduardo98598/ReportProject/master/pruebas/final1.png" width="800"/> <img src="https://raw.githubusercontent.com/Eduardo98598/ReportProject/master/pruebas/final2.png" width="800"/>
+ <img src="https://raw.githubusercontent.com/Eduardo98598/ReportProject/master/pruebas/final3.png" width="800"/></p> 
 
+Empezando por la cuenta del usuario como vemos a continuación-
+<p align="center"> <img src="https://raw.githubusercontent.com/Eduardo98598/ReportProject/master/pruebas/cuenta1.png" width="800"/> <img src="https://raw.githubusercontent.com/Eduardo98598/ReportProject/master/pruebas/cuenta2.png" width="800"/>
+</p> 
+Al registrar el usuario a la BD el puede acceder a la cuenta para elegir un plan conveniente
+del cual serviran para hacer el cáculo enla cuenta de ROOT
+Vista final
 
-
+<p align="center"> <img src="https://raw.githubusercontent.com/Eduardo98598/ReportProject/master/pruebas/vista.png" width="800"/></p> 
